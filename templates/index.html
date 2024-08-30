@@ -1,0 +1,59 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Rescue - Registro de Doações e Acolhimentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Cat Rescue</h1>
+    </header>
+
+    <div class="container">
+        <h2>Registrar Doação</h2>
+        <form action="/donor" method="post">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="contact">Contato:</label>
+            <input type="text" id="contact" name="contact" required><br><br>
+            
+            <button type="submit">Registrar Doação</button>
+        </form>
+
+        <h2>Registrar Lar Temporário</h2>
+        <form action="/foster_home" method="post">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="location">Localização:</label>
+            <input type="text" id="location" name="location" required><br><br>
+            
+            <label for="capacity">Capacidade:</label>
+            <input type="number" id="capacity" name="capacity" required><br><br>
+            
+            <button type="submit">Registrar Lar Temporário</button>
+        </form>
+
+        <h2>Registrar Gato</h2>
+        <form action="/cat" method="post">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="age">Idade:</label>
+            <input type="number" id="age" name="age" required><br><br>
+            
+            <label for="breed">Raça:</label>
+            <input type="text" id="breed" name="breed" required><br><br>
+            
+            <button type="submit">Registrar Gato</button>
+        </form>
+    </div>
+</body>
+</html>
