@@ -10,30 +10,34 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
+
 @app.before_request
 def create_tables():
     db.create_all()
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
+# Função de exportação de dados aprimorada
 @app.route('/donor', methods=['POST'])
 def add_donor():
     name = request.form['name']
     email = request.form['email']
     contact = request.form['contact']
-    
+
     new_donor = Donor(
         name=name,
         email=email,
         contact=contact,
         donation_date=datetime.now()
     )
-    
+
     db.session.add(new_donor)
     db.session.commit()
-    
+
     return jsonify({"message": "Donor added successfully!"}), 201
 
 @app.route('/foster_home', methods=['POST'])
@@ -68,9 +72,9 @@ def add_cat():
 
 @app.route('/export_data', methods=['GET'])
 def export_data():
-    # Coletando dados dos doadores
+    # Query para todos os doadores
     donors = Donor.query.all()
-    donor_data = [{
+    data = [{
         'name': donor.name,
         'email': donor.email,
         'contact': donor.contact,
@@ -109,6 +113,7 @@ def export_data():
 
     # Enviando o arquivo como resposta
     return send_file(file_path, as_attachment=True)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
