@@ -3,3 +3,4 @@ openpyxl
 flask
 matplotlib
 flask_sqlalchemy
+seaborn
